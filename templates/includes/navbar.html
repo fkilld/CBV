@@ -1,0 +1,13 @@
+<nav>
+{% if user.is_authenticated %}
+    <a href="{% url 'home' %}">Home</a> 
+    {% comment %} <a href="{% url 'profile' %}">Profile</a> {% endcomment %}
+   <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+</form>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+</nav>

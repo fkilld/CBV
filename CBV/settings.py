@@ -55,7 +55,7 @@ ROOT_URLCONF = 'CBV.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,18 +85,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -121,3 +121,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# These settings manage redirects around user authentication in Django.
+
+# After a successful login, Django redirects the user to the URL named "home".
+LOGIN_REDIRECT_URL = 'home'  # Redirect to home after login
+
+# If a user tries to access a page that requires authentication and they're not logged in,
+# they are redirected to the URL named "login".
+LOGIN_URL = 'login'  # Redirect to login page if not authenticated
+
+# This is the URL that, when visited, will log the user out.
+LOGOUT_URL = 'logout'  # URL for logout
+
+# After the user logs out, they are redirected to the URL named "login".
+LOGOUT_REDIRECT_URL = 'login'  # Redirect to login page after logout
