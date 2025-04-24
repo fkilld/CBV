@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>All News</h1>
+    <ul>
+        {% for item in news_list %}
+            <li>
+                <h2>{{ item.title }}</h2>
+                <p>{{ item.content }}</p>
+                <a href="{% url 'news_update' item.pk %}">Update</a>
+                {% if item.author == request.user %}
+                    <form action="{% url 'news_delete' item.pk %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="link-button">Delete</button>
+                    </form>
+                {% endif %}
+                <a href="{% url 'news_detail' item.pk %}">View Details</a>
+            </li>
+        {% empty %}
+            <li>No news available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
